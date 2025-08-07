@@ -1,79 +1,31 @@
-# --- Go Specific ---
 # Binaries for programs and plugins
 *.exe
 *.exe~
 *.dll
 *.so
 *.dylib
-/bin/                # Directory for compiled binaries
-/dist/               # Distribution directory
-
-# Go workspace file
-go.work
-
-# Dependency directories
-vendor/              # Go dependencies (if not using modules)
-/go/pkg/             # Go package cache
-
-# Test artifacts
 *.test
 *.out
-coverage.txt
-profile.out
+bin/
+dist/
 
-# IDE specific
+# Go workspace files
+go.work
+go.work.sum
+
+# Dependency directories
+vendor/
+Godeps/
+
+# IDE specific files
 .idea/
 .vscode/
 *.swp
 *.swo
+*.sublime-workspace
+*.sublime-project
 
-# --- Frontend (React) ---
-/node_modules/
-/.pnp
-.pnp.js
-
-# Build files
-/client/dist/
-/client/build/
-/client/.cache/
-/client/coverage/
-
-# Production
-/client/.env.production
-/client/.env*.local
-
-# Debug logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Editor directories and files
-/client/.vscode/
-/client/.idea/
-/client/*.suo
-/client/*.ntvs*
-/client/*.njsproj
-/client/*.sln
-/client/*.sw?
-
-# --- Database ---
-*.db
-*.sqlite
-*.sqlite3
-/postgres_data/      # Local PostgreSQL data directory
-/docker/postgres/data/
-
-# --- Environment Files ---
-.env                 # All .env files (use .env.example for templates)
-.env.local
-.env.development
-.env.test
-.env.production
-
-# --- Docker ---
-docker-compose.override.yml
-
-# --- OS Generated ---
+# OS generated files
 .DS_Store
 .DS_Store?
 ._*
@@ -82,29 +34,31 @@ docker-compose.override.yml
 ehthumbs.db
 Thumbs.db
 
-# --- IDE Specific ---
-# JetBrains
-*.iml
-*.ipr
-*.iws
+# Test output
+coverage.txt
+profile.out
 
-# VS Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+# Go environment files
+.env
+.env.local
 
-# --- Build Artifacts ---
-/client/.next/       # Next.js
-/client/out/         # Next.js
+# Debug files
+debug
 
-# --- Logs ---
+# Build output
+/pkg/
+/tmp/
+/artifacts/
+
+# Go files that might be generated
+*_generated.go
+
+# Local development configuration files
+local.*
+*.local
+
+# Log files
 *.log
-logs/
 
-# --- Misc ---
-*.bak
-*.tmp
-*~
-*.patch
+# Go module files (if not tracking them)
+go.sum
