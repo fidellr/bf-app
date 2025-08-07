@@ -1,0 +1,110 @@
+# --- Go Specific ---
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+/bin/                # Directory for compiled binaries
+/dist/               # Distribution directory
+
+# Go workspace file
+go.work
+
+# Dependency directories
+vendor/              # Go dependencies (if not using modules)
+/go/pkg/             # Go package cache
+
+# Test artifacts
+*.test
+*.out
+coverage.txt
+profile.out
+
+# IDE specific
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# --- Frontend (React) ---
+/node_modules/
+/.pnp
+.pnp.js
+
+# Build files
+/client/dist/
+/client/build/
+/client/.cache/
+/client/coverage/
+
+# Production
+/client/.env.production
+/client/.env*.local
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+/client/.vscode/
+/client/.idea/
+/client/*.suo
+/client/*.ntvs*
+/client/*.njsproj
+/client/*.sln
+/client/*.sw?
+
+# --- Database ---
+*.db
+*.sqlite
+*.sqlite3
+/postgres_data/      # Local PostgreSQL data directory
+/docker/postgres/data/
+
+# --- Environment Files ---
+.env                 # All .env files (use .env.example for templates)
+.env.local
+.env.development
+.env.test
+.env.production
+
+# --- Docker ---
+docker-compose.override.yml
+
+# --- OS Generated ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# --- IDE Specific ---
+# JetBrains
+*.iml
+*.ipr
+*.iws
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# --- Build Artifacts ---
+/client/.next/       # Next.js
+/client/out/         # Next.js
+
+# --- Logs ---
+*.log
+logs/
+
+# --- Misc ---
+*.bak
+*.tmp
+*~
+*.patch
