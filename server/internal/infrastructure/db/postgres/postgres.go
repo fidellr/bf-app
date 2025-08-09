@@ -62,7 +62,7 @@ func NewPostgresDB(ctx context.Context, cfg DBConfig) (*pgxpool.Pool, error) {
 	poolConfig.ConnConfig.ConnectTimeout = cfg.ConnTimeout
 
 	poolConfig.AfterConnect = func(ctx context.Context, conn *pgx.Conn) error {
-		_, err := conn.Exec(ctx, "SET TIME ZONE'UTC")
+		_, err := conn.Exec(ctx, "SET TIME ZONE'UTC'")
 		return err
 	}
 
