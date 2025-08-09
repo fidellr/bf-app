@@ -18,7 +18,7 @@ import (
 
 type (
 	BookHandler struct {
-		service   services.BookService
+		service   *services.BookService
 		validator *validator.Validate
 		logger    *zap.Logger
 	}
@@ -29,7 +29,7 @@ type (
 	}
 )
 
-func NewBookHandler(s services.BookService, logger *zap.Logger) *BookHandler {
+func NewBookHandler(s *services.BookService, logger *zap.Logger) *BookHandler {
 
 	return &BookHandler{
 		service:   s,
@@ -70,10 +70,10 @@ func (h *BookHandler) LogRequest(next echo.HandlerFunc) echo.HandlerFunc {
 // @Produce json
 // @Param book body models.BookCreateRequest true "Book data"
 // @Success 201 {object} models.Book
-// @Failure 400 {object} ErrorResponse
-// @Failure 409 {object} ErrorResponse
-// @Failure 429 {object} ErrorResponse
-// @Failure 500 {object} ErrorResponse
+// @Failure 400 {object} handlers.ErrorResponse
+// @Failure 409 {object} handlers.ErrorResponse
+// @Failure 429 {object} handlers.ErrorResponse
+// @Failure 500 {object} handlers.ErrorResponse
 // @Router /books [post]
 func (h *BookHandler) CreateBook(c echo.Context) error {
 	var req models.BookCreateRequest
@@ -139,10 +139,10 @@ func (h *BookHandler) CreateBook(c echo.Context) error {
 // @Param id path int true "Book ID"
 // @Success 200 {object} models.Book
 // @Header 200 {string} Cache-Control "max-age=3600, public"
-// @Failure 400 {object} ErrorResponse
-// @Failure 404 {object} ErrorResponse
-// @Failure 429 {object} ErrorResponse
-// @Failure 500 {object} ErrorResponse
+// @Failure 400 {object} handlers.ErrorResponse
+// @Failure 404 {object} handlers.ErrorResponse
+// @Failure 429 {object} handlers.ErrorResponse
+// @Failure 500 {object} handlers.ErrorResponse
 // @Router /books/{id} [get]
 func (h *BookHandler) GetBook(c echo.Context) error {
 	id, err := strconv.Atoi(c.Param("id"))
@@ -177,11 +177,11 @@ func (h *BookHandler) GetBook(c echo.Context) error {
 // @Produce json
 // @Param page query int false "Page number" default(1)
 // @Param limit query int false "Items per page" default(20)
-// @Success 200 {object} BookListResponse
+// @Success 200 {object} models.BookListResponse
 // @Header 200 {string} Cache-Control "max-age=60, public"
-// @Failure 400 {object} ErrorResponse
-// @Failure 429 {object} ErrorResponse
-// @Failure 500 {object} ErrorResponse
+// @Failure 400 {object} handlers.ErrorResponse
+// @Failure 429 {object} handlers.ErrorResponse
+// @Failure 500 {object} handlers.ErrorResponse
 // @Router /books [get]
 func (h *BookHandler) ListBooks(c echo.Context) error {
 	page, _ := strconv.Atoi(c.QueryParam("page"))
@@ -231,10 +231,10 @@ func (h *BookHandler) ListBooks(c echo.Context) error {
 // @Param id path int true "Book ID"
 // @Param book body models.BookUpdateRequest true "Book data"
 // @Success 200 {object} models.Book
-// @Failure 400 {object} ErrorResponse
-// @Failure 404 {object} ErrorResponse
-// @Failure 403 {object} ErrorResponse
-// @Failure 500 {object} ErrorResponse
+// @Failure 400 {object} handlers.ErrorResponse
+// @Failure 404 {object} handlers.ErrorResponse
+// @Failure 403 {object} handlers.ErrorResponse
+// @Failure 500 {object} handlers.ErrorResponse
 // @Router /books/{id} [put]
 func (h *BookHandler) UpdateBook(c echo.Context) error {
 	id, err := strconv.Atoi(c.Param("id"))
@@ -271,10 +271,10 @@ func (h *BookHandler) UpdateBook(c echo.Context) error {
 // @Produce json
 // @Param id path int true "Book ID"
 // @Success 204
-// @Failure 400 {object} ErrorResponse
-// @Failure 404 {object} ErrorResponse
-// @Failure 403 {object} ErrorResponse
-// @Failure 500 {object} ErrorResponse
+// @Failure 400 {object} handlers.ErrorResponse
+// @Failure 404 {object} handlers.ErrorResponse
+// @Failure 403 {object} handlers.ErrorResponse
+// @Failure 500 {object} handlers.ErrorResponse
 // @Router /books/{id} [delete]
 func (h *BookHandler) DeleteBook(c echo.Context) error {
 	id, err := strconv.Atoi(c.Param("id"))
@@ -395,7 +395,7 @@ func handleServiceError(c echo.Context, logger *zap.Logger, err error) error {
 		return c.JSON(http.StatusInternalServerError, ErrorResponse{
 			Error:   "internal_error",
 			Code:    http.StatusInternalServerError,
-			Message: "An unexpected error occurred",
+			Message: err.Error(),
 		})
 	}
 }
