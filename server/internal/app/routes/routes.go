@@ -8,12 +8,11 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	echoSwagger "github.com/swaggo/echo-swagger"
 	"go.uber.org/zap"
 )
 
-func APIRouter(e *echo.Echo, bookService services.BookService, logger *zap.Logger) {
-	bookHandler := handlers.NewBookHandler(bookService, logger)
-
+func APIRouter(e *echo.Echo, bookHandler *handlers.BookHandler, bookService *services.BookService, logger *zap.Logger) {
 	e.Use(
 		middleware.Recover(),
 		middleware.RequestID(),
@@ -35,7 +34,7 @@ func APIRouter(e *echo.Echo, bookService services.BookService, logger *zap.Logge
 			},
 		),
 	)
-
+	e.GET("/swagger/*", echoSwagger.WrapHandler)
 	v1 := e.Group("/api/v1")
 
 	v1.GET("/health", func(c echo.Context) error {
