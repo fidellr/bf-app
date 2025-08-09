@@ -7,7 +7,7 @@ type Book struct {
 	Title     string    `json:"title" validate:"required,min=1,max=200"`
 	Author    string    `json:"author" validate:"required,min=1,max=100"`
 	Published string    `json:"published" validate:"required,datetime=2006-01-02"`
-	ISBN      string    `json:"isbn" validate:"required,isbn"`
+	ISBN      string    `json:"isbn" validate:"required"`
 	Pages     int       `json:"pages" validate:"required,min=5"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
@@ -18,7 +18,7 @@ type (
 		Title     string `json:"title" validate:"required,min=1,max=200"`
 		Author    string `json:"author" validate:"required,min=1,max=100"`
 		Published string `json:"published" validate:"required,datetime=2006-01-02"`
-		ISBN      string `json:"isbn" validate:"required,isbn"`
+		ISBN      string `json:"isbn" validate:"required"`
 		Pages     int    `json:"pages" validate:"required,min=5,gt=0"`
 	}
 
@@ -26,7 +26,7 @@ type (
 		Title     string `json:"title" validate:"omitempty,min=1,max=200"`
 		Author    string `json:"author" validate:"omitempty,min=1,max=100"`
 		Published string `json:"published" validate:"omitempty,datetime=2006-01-02"`
-		ISBN      string `json:"isbn" validate:"omitempty,isbn"`
+		ISBN      string `json:"isbn" validate:"omitempty"`
 		Pages     int    `json:"pages" validate:"omitempty,min=5"`
 	}
 	BookGetByIDRequest struct {
@@ -34,7 +34,7 @@ type (
 		Title     string `json:"title" validate:"omitempty,min=1,max=200"`
 		Author    string `json:"author" validate:"omitempty,min=1,max=100"`
 		Published string `json:"published" validate:"omitempty,datetime=2006-01-02"`
-		ISBN      string `json:"isbn" validate:"omitempty,isbn"`
+		ISBN      string `json:"isbn" validate:"omitempty"`
 		Pages     int    `json:"pages" validate:"omitempty,min=5"`
 	}
 	BookFetchAllRequest struct {
@@ -42,7 +42,7 @@ type (
 		Title     string `json:"title" validate:"omitempty,min=1,max=200"`
 		Author    string `json:"author" validate:"omitempty,min=1,max=100"`
 		Published string `json:"published" validate:"omitempty,datetime=2006-01-02"`
-		ISBN      string `json:"isbn" validate:"omitempty,isbn"`
+		ISBN      string `json:"isbn" validate:"omitempty"`
 		Pages     int    `json:"pages" validate:"omitempty,min=5"`
 		PageSize  int    `json:"page_size" validate:"omitempty"`
 	}
