@@ -5,7 +5,7 @@ There are 2 different branches:
 2. `dev` (development/staging branch)
 ### Backend:
 
-1. Set up Environment Variables: `cd server && cp .env.example`
+1. Set up Environment Variables: `cd server && cp .env.example .env`
 2. Edit `.env` with your postgresql credentials, for example:
 
 ```
