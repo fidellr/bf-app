@@ -1,5 +1,8 @@
 # Book Management App
 
+There are 2 different branches:
+1. `main` (master branch)
+2. `dev` (development/staging branch)
 ### Backend:
 
 1. Set up Environment Variables: `cd server && cp .env.example`
