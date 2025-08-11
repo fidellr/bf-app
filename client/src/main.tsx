@@ -6,6 +6,7 @@ import { routeTree } from "./routeTree.gen";
 
 import "./styles.css";
 import reportWebVitals from "./reportWebVitals.ts";
+import { BookProvider } from "./context/BookContext.tsx";
 
 const router = createRouter({
   routeTree,
@@ -27,7 +28,9 @@ if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <RouterProvider router={router} />
+      <BookProvider>
+        <RouterProvider router={router} />
+      </BookProvider>
     </StrictMode>
   );
 }
